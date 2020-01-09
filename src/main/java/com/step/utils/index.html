@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    jQuery(document).ready(function () {
+        checkCustomize = function () {
+            console.log('###########')
+            var fygss = jQuery('#field11229').val()
+            var code = jQuery('#field11229').val()
+            console.log('###########' + fygss)
+            if (fygss == '44' || fygss == '45' || fygss == '46' || fygss == '50' || fygss == '1') {
+                alert('费用公司不能选择事业部')
+                return false
+            }
+            switch (fygss) {
+                case '5' :
+                    code.val('S100')
+                    break;
+                case '6':
+                    code.val('S200')
+                    break;
+                case '19':
+                    code.val('S300')
+                    break;
+                default:
+            }
+            return ture
+        }
+    })
+</script>
+</body>
+</html>

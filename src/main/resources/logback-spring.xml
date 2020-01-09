@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<configuration>
+    <springProperty scope="context" name="log_dir" source="logging.path"/>
+    <!-- ch.qos.logback.core.ConsoleAppender 控制台输出 -->
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>[%-5level] %d{HH:mm:ss.SSS} [%thread] %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log_dir}/today.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log_dir}/error-log-.%d{yyyy-MM-dd}.zip</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>%d [%thread] %-5level %40logger{40} - %msg%n</Pattern>
+        </layout>
+    </appender>
+
+    <appender name="AccessFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log_dir}/Accesstoday.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log_dir}/access-log-.%d{yyyy-MM-dd}.zip</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>%d [%thread] %-5level %40logger{40} - %msg%n</Pattern>
+        </layout>
+    </appender>
+    <!-- 日志级别 -->
+    <root>
+        <level value="info"/>
+        <appender-ref ref="console"/>
+    </root>
+    <logger name="info">
+        <level value="DEBUG" /><!-- "TRACE", "DEBUG" -->
+        <appender-ref ref="console" />
+    </logger>
+    <logger name="error">
+        <level value="ERROR" /><!-- "TRACE", "DEBUG" -->
+        <appender-ref ref="FILE" />
+    </logger>
+    <logger name="access">
+        <level value="ERROR" /><!-- "TRACE", "DEBUG" -->
+        <appender-ref ref="AccessFile" />
+    </logger>
+
+</configuration>
