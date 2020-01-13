@@ -68,7 +68,7 @@ public class SecondaryConfig {
         properties.put("hibernate.physical_naming_strategy",new SpringPhysicalNamingStrategy());
         properties.put("hibernate.show_sql",true);
         properties.put("hibernate.enable_lazy_load_no_trans",true);
-       // properties.put("hibernate.hbm2ddl.auto","update");
+//        properties.put("hibernate.hbm2ddl.auto","update");
         return properties;
     }
     @Bean("transactionManagerSecondary")
